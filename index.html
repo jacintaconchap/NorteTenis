@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NorteTenis – Circuito Regional Antofagasta 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
 <style>
 :root {
   --orange:#E86A1A; --orange-l:#FFF3EA; --orange-m:#FFD4B0;
@@ -491,26 +491,24 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
     <div class="sec-head">
       <span class="eyebrow">Pago de inscripción</span>
       <h2>Datos de Transferencia</h2>
-      <p>Transfiere $20.000 por jugador/a y envía el comprobante al momento de inscribirte.</p>
+      <p>Toca el recuadro para copiar todos los datos de una vez y pégalos en tu aplicación del banco.</p>
     </div>
-    <div class="transfer-wrap">
-      <div>
-        <table class="transfer-table" style="border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);border:1.5px solid var(--border)">
-          <tr><td>Nombre</td><td><strong>Rodrigo López Abarca</strong></td></tr>
-          <tr><td>RUT</td><td>13.975.983-4</td></tr>
-          <tr><td>Banco</td><td>Banco Itaú</td></tr>
-          <tr><td>Tipo de cuenta</td><td>Cuenta Corriente</td></tr>
-          <tr><td>Número de cuenta</td><td><strong>229 994 512</strong></td></tr>
-          <tr><td>Correo</td><td>rodlopezabarca@hotmail.com</td></tr>
-          <tr><td>Monto</td><td><strong style="color:var(--orange)">$20.000 por jugador/a</strong></td></tr>
-        </table>
-        <div class="transfer-note">
-          📌 Importante: una vez realizada la transferencia, envía el comprobante a <strong>jacintaconcha@gmail.com</strong> o al WhatsApp <strong>+56 9 5678 6929</strong> indicando el nombre del jugador/a y la categoría.
+    <div style="max-width:520px;margin:0 auto">
+      <div onclick="copyTransfer()" style="background:var(--navy);border-radius:var(--r);padding:32px 36px;cursor:pointer;transition:all .2s;user-select:all" title="Toca para copiar">
+        <div style="font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px">👆 Toca para copiar todos los datos</div>
+        <div style="display:flex;flex-direction:column;gap:12px;font-size:16px;color:#fff;line-height:1.5">
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">Nombre</span>Rodrigo López Abarca</div>
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">RUT</span>13.975.983-4</div>
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">Banco</span>Banco Itaú</div>
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">Tipo cuenta</span>Cuenta Corriente</div>
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">N° cuenta</span><strong style="color:var(--orange);font-size:20px">229 994 512</strong></div>
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">Monto</span><strong style="color:var(--orange);font-size:18px">$20.000 por jugador/a</strong></div>
+          <div><span style="display:inline-block;width:130px;color:rgba(255,255,255,.45);font-size:13px">Correo</span>rodlopezabarca@hotmail.com</div>
         </div>
       </div>
-      <div class="qr-box">
-        <img id="qrimg" src="" alt="QR Transferencia" style="width:160px;height:160px;border-radius:8px;display:block">
-        <p>📱 Escanea para<br>ver datos de pago</p>
+      <div id="copy-ok" style="display:none;text-align:center;margin-top:14px;font-size:15px;font-weight:800;color:var(--green)">✓ ¡Datos copiados!</div>
+      <div style="margin-top:20px;background:var(--orange-l);border-left:4px solid var(--orange);border-radius:var(--r-sm);padding:14px 18px;font-size:14px;color:var(--navy);font-weight:600;line-height:1.6">
+        📌 Una vez transferido, envía el comprobante a <strong>jacintaconcha@gmail.com</strong> o WhatsApp <strong>+56 9 5678 6929</strong> con el nombre del jugador/a y su categoría.
       </div>
     </div>
   </div>
@@ -572,19 +570,4 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
   </div>
   <div style="text-align:right">
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px">
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--red)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--orange)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--green)"></div>
-      <div style="width:10px;height:10px;border-radius:50%;background:var(--purple)"></div>
-    </div>
-    <div>Auto Club de Antofagasta</div>
-    <div style="margin-top:4px"><a href="https://forms.gle/dazjSDBWztzc6arV6" target="_blank" style="color:var(--orange);font-weight:700">Inscripciones →</a></div>
-  </div>
-</footer>
-
-<script>
-const datos = encodeURIComponent("Banco Itaú | Rodrigo López Abarca | RUT: 13.975.983-4 | Cta Cte: 229994512 | $20.000 por jugador | Comprobante: jacintaconcha@gmail.com");
-document.getElementById("qrimg").src = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=1A2E4A&bgcolor=ffffff&data=" + datos;
-</script>
-</body>
-</html>
+      <div style="
