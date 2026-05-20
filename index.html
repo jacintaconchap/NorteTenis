@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NorteTenis – Circuito Regional Antofagasta 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Bebas+Neue&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
 :root {
   --orange:#E86A1A; --orange-l:#FFF3EA; --orange-m:#FFD4B0;
@@ -12,6 +13,7 @@
   --red:#D63030; --red-l:#FFF0F0;
   --green:#1E8A3C; --green-l:#EDF7F0;
   --blue:#1A6EB5; --blue-l:#EBF4FF;
+  --purple:#6B3FA0; --purple-l:#F3EEFF;
   --text:#1C2B3A; --muted:#6B7F93;
   --border:#E2EAF2; --bg:#F6F8FC; --white:#fff;
   --r:14px; --r-sm:8px;
@@ -24,13 +26,7 @@ body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);line
 a{color:inherit;text-decoration:none}
 
 /* NAV */
-nav{
-  position:sticky;top:0;z-index:200;
-  background:var(--white);border-bottom:3px solid var(--orange);
-  box-shadow:0 2px 14px rgba(0,0,0,.07);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;height:66px;
-}
+nav{position:sticky;top:0;z-index:200;background:var(--white);border-bottom:3px solid var(--orange);box-shadow:0 2px 14px rgba(0,0,0,.07);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:66px}
 .brand{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:1px;color:var(--navy);text-transform:none}
 .brand em{color:var(--orange);font-style:normal}
 .nav-links{display:flex;gap:4px;align-items:center}
@@ -40,41 +36,35 @@ nav{
 .nav-cta:hover{background:#c55814!important;transform:translateY(-1px)}
 
 /* HERO */
-.hero{
-  background:linear-gradient(140deg,var(--navy) 0%,var(--navy2) 100%);
-  position:relative;overflow:hidden;padding:90px 40px 80px;text-align:center;
-}
+.hero{background:linear-gradient(140deg,var(--navy) 0%,var(--navy2) 100%);position:relative;overflow:hidden;padding:90px 40px 80px;text-align:center}
 .orb{position:absolute;border-radius:50%;pointer-events:none}
 .o1{width:500px;height:500px;background:rgba(232,106,26,.12);top:-180px;right:-120px}
 .o2{width:320px;height:320px;background:rgba(26,110,181,.1);bottom:-100px;left:-80px}
 .o3{width:160px;height:160px;background:rgba(255,255,255,.04);bottom:40px;right:80px}
-
 .hero-tag{display:inline-block;background:var(--orange);color:#fff;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;padding:5px 20px;border-radius:20px;margin-bottom:24px}
 .hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(50px,10vw,96px);line-height:.92;color:#fff;letter-spacing:3px;margin-bottom:4px}
 .hero h1 em{color:var(--orange);font-style:normal}
-.hero-sub{font-size:16px;color:rgba(255,255,255,.6);font-weight:600;margin:18px auto 40px;max-width:460px}
-
+.hero-sub{font-size:16px;color:rgba(255,255,255,.6);font-weight:600;margin:18px auto 40px;max-width:520px}
 .date-pill{display:inline-flex;align-items:center;gap:18px;background:rgba(255,255,255,.1);border:1.5px solid rgba(255,255,255,.2);border-radius:var(--r);padding:16px 32px;margin-bottom:40px}
 .date-pill .dn{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:var(--orange)}
 .date-pill .di strong{display:block;color:#fff;font-size:15px;font-weight:800}
 .date-pill .di span{color:rgba(255,255,255,.5);font-size:12px}
-
 .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
 /* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:8px;font-family:'Nunito',sans-serif;font-weight:800;font-size:15px;padding:14px 32px;border-radius:var(--r);cursor:pointer;border:none;transition:all .2s}
 .btn-orange{background:var(--orange);color:#fff;box-shadow:0 4px 18px rgba(232,106,26,.4)}
-.btn-orange:hover{background:#c55814;transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,106,26,.45)}
+.btn-orange:hover{background:#c55814;transform:translateY(-2px)}
 .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:2px solid rgba(255,255,255,.3)}
 .btn-ghost:hover{background:rgba(255,255,255,.2);transform:translateY(-2px)}
 .btn-white{background:#fff;color:var(--orange);font-size:17px;padding:16px 40px}
-.btn-white:hover{background:#fff3ea;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.15)}
+.btn-white:hover{background:#fff3ea;transform:translateY(-2px)}
 
 /* STATS */
 .stats{background:var(--orange);display:flex;flex-wrap:wrap;justify-content:center}
-.stat{padding:28px 48px;text-align:center;border-right:1px solid rgba(255,255,255,.25);flex:1;min-width:170px}
+.stat{padding:28px 40px;text-align:center;border-right:1px solid rgba(255,255,255,.25);flex:1;min-width:150px}
 .stat:last-child{border-right:none}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:48px;color:#fff;line-height:1}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:#fff;line-height:1}
 .stat-lbl{font-size:11px;color:rgba(255,255,255,.75);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:2px}
 
 /* SECTIONS */
@@ -84,25 +74,35 @@ nav{
 .sec-head{text-align:center;margin-bottom:52px}
 .eyebrow{display:block;font-size:11px;font-weight:800;letter-spacing:3.5px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
 .sec-head h2{font-family:'Bebas Neue',sans-serif;font-size:46px;color:var(--navy);letter-spacing:1px;line-height:1}
-.sec-head p{color:var(--muted);font-size:15px;margin-top:10px;max-width:520px;margin-inline:auto}
+.sec-head p{color:var(--muted);font-size:15px;margin-top:10px;max-width:560px;margin-inline:auto}
 
 /* CATEGORIES */
-.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.cat-card{border-radius:var(--r);padding:32px 28px;box-shadow:var(--sh);transition:all .22s;position:relative;overflow:hidden;border:1.5px solid transparent}
+.cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.cat-card{border-radius:var(--r);padding:28px 22px;box-shadow:var(--sh);transition:all .22s;position:relative;overflow:hidden;border:1.5px solid transparent}
 .cat-card:hover{transform:translateY(-4px);box-shadow:var(--sh2)}
 .cat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:var(--r) var(--r) 0 0}
 .cat-red{background:var(--red-l);border-color:rgba(214,48,48,.15)}.cat-red::before{background:var(--red)}
 .cat-orange{background:var(--orange-l);border-color:rgba(232,106,26,.2)}.cat-orange::before{background:var(--orange)}
 .cat-green{background:var(--green-l);border-color:rgba(30,138,60,.15)}.cat-green::before{background:var(--green)}
-.cat-badge{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font-weight:900;font-size:16px;color:#fff;margin-bottom:16px}
-.cat-badge-red{background:var(--red)}.cat-badge-orange{background:var(--orange)}.cat-badge-green{background:var(--green)}
-.cat-card h3{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.5px;margin-bottom:14px}
-.cat-red h3{color:var(--red)}.cat-orange h3{color:var(--orange)}.cat-green h3{color:var(--green)}
-.cat-rows{display:flex;flex-direction:column;gap:8px}
-.cat-row{display:flex;align-items:flex-start;gap:10px;font-size:14px}
-.cat-row-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.cat-purple{background:var(--purple-l);border-color:rgba(107,63,160,.2)}.cat-purple::before{background:var(--purple)}
+.cat-badge{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;font-weight:900;font-size:15px;color:#fff;margin-bottom:14px}
+.cat-badge-red{background:var(--red)}.cat-badge-orange{background:var(--orange)}.cat-badge-green{background:var(--green)}.cat-badge-purple{background:var(--purple)}
+.cat-sub{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:2px 8px;border-radius:10px;margin-bottom:10px}
+.cat-sub-red{background:rgba(214,48,48,.12);color:var(--red)}
+.cat-card h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.5px;margin-bottom:12px}
+.cat-red h3{color:var(--red)}.cat-orange h3{color:var(--orange)}.cat-green h3{color:var(--green)}.cat-purple h3{color:var(--purple)}
+.cat-rows{display:flex;flex-direction:column;gap:7px}
+.cat-row{display:flex;align-items:flex-start;gap:9px;font-size:13px}
+.cat-row-icon{font-size:15px;flex-shrink:0;margin-top:1px}
 .cat-row strong{color:var(--text);font-weight:700}
 .cat-row span{color:var(--muted)}
+
+/* SCHEDULE HIGHLIGHT */
+.schedule-box{background:var(--navy);border-radius:var(--r);padding:28px 32px;margin-top:32px;display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.schedule-day{background:rgba(255,255,255,.07);border-radius:var(--r-sm);padding:20px;border-left:4px solid var(--orange)}
+.schedule-day h4{font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:.5px;margin-bottom:8px}
+.schedule-day p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6}
+.schedule-day .day-date{font-size:11px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--orange);margin-bottom:6px}
 
 /* CALENDAR */
 .cal-grid{display:flex;flex-direction:column;gap:14px}
@@ -137,6 +137,15 @@ nav{
 .base-block ul{list-style:none;display:flex;flex-direction:column;gap:8px}
 .base-block li{font-size:13.5px;color:var(--text);display:flex;align-items:flex-start;gap:10px;line-height:1.55}
 .base-block li::before{content:'✓';font-weight:900;color:var(--green);font-size:13px;flex-shrink:0;margin-top:2px}
+.base-block li.warn::before{content:'⚠️';font-size:13px}
+.base-block li.info::before{content:'ℹ️';font-size:13px}
+
+/* STAFF BOX */
+.staff-box{background:var(--navy);border-radius:var(--r);padding:28px 32px;display:flex;gap:32px;flex-wrap:wrap;margin-top:28px}
+.staff-card{display:flex;align-items:center;gap:14px}
+.staff-icon{width:48px;height:48px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.staff-role{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:3px}
+.staff-name{font-size:16px;font-weight:800;color:#fff}
 
 /* WARN TABLE */
 .warn-table{width:100%;border-collapse:collapse;font-size:14px}
@@ -161,8 +170,20 @@ nav{
 .master-callout .mc-text h3{font-family:'Bebas Neue',sans-serif;font-size:30px;color:#fff;letter-spacing:.5px;margin-bottom:6px}
 .master-callout .mc-text p{font-size:14px;color:rgba(255,255,255,.6);max-width:380px}
 .master-callout .mc-amount{margin-left:auto;text-align:right;flex-shrink:0}
-.mc-num{font-family:'Bebas Neue',sans-serif;font-size:44px;color:var(--orange);line-height:1}
-.mc-lbl{font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:1px}
+
+/* TRANSFERENCIA / QR */
+.transfer-section{background:var(--white)}
+.transfer-wrap{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center}
+.transfer-table{width:100%;border-collapse:collapse}
+.transfer-table tr{border-bottom:1px solid var(--border)}
+.transfer-table tr:last-child{border-bottom:none}
+.transfer-table td{padding:12px 16px;font-size:14px}
+.transfer-table td:first-child{font-weight:800;color:var(--navy);width:40%;background:#f9fbfd}
+.transfer-table td:last-child{color:var(--text)}
+.qr-box{text-align:center;background:var(--white);border:2px solid var(--border);border-radius:var(--r);padding:24px;box-shadow:var(--sh);flex-shrink:0}
+.qr-box p{font-size:12px;color:var(--muted);margin-top:12px;font-weight:700}
+#qrcode canvas,#qrcode img{border-radius:8px}
+.transfer-note{background:var(--orange-l);border-left:4px solid var(--orange);border-radius:var(--r-sm);padding:14px 18px;margin-top:20px;font-size:13px;color:var(--navy);font-weight:600}
 
 /* CTA */
 .cta-section{background:linear-gradient(135deg,var(--orange) 0%,#c55814 100%);padding:72px 40px;text-align:center;position:relative;overflow:hidden}
@@ -190,8 +211,10 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
   .hero{padding:60px 20px 56px}
   .section{padding:56px 20px}
   .bases-wrap{grid-template-columns:1fr}
+  .transfer-wrap{grid-template-columns:1fr}
+  .schedule-box{grid-template-columns:1fr}
   .master-callout{flex-direction:column;text-align:center}
-  .master-callout .mc-amount{margin:0 auto}
+  .staff-box{flex-direction:column;gap:20px}
   footer{flex-direction:column;text-align:center}
 }
 </style>
@@ -205,6 +228,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
     <a href="#categorias">Categorías</a>
     <a href="#calendario">Calendario</a>
     <a href="#bases">Bases</a>
+    <a href="#transferencia">Pago</a>
     <a href="#premios">Premios</a>
     <a href="https://forms.gle/dazjSDBWztzc6arV6" target="_blank" class="btn nav-cta">🎾 Inscribirse</a>
   </div>
@@ -217,12 +241,12 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
   <div class="orb o3"></div>
   <div class="hero-tag">Circuito Regional · Antofagasta 2026</div>
   <h1>Norte<em>Tenis</em></h1>
-  <p class="hero-sub">Tenis 10s para niños y niñas de 5 a 10 años · Cancha Roja, Naranja y Verde · Normativa ITF</p>
+  <p class="hero-sub">Tenis 10s para niños y niñas de 5 a 12 años · Cancha Roja, Naranja, Verde y Sub12 · Normativa ITF</p>
   <div class="date-pill">
-    <div class="dn">29</div>
+    <div class="dn">5</div>
     <div class="di">
-      <strong>Primera Fecha — Mayo 2026</strong>
-      <span>Auto Club de Antofagasta · 29, 30 y 31 de mayo</span>
+      <strong>Primera Fecha — Junio 2026</strong>
+      <span>Auto Club de Antofagasta · Viernes 5 y Sábado 6 de junio</span>
     </div>
   </div>
   <div class="hero-btns">
@@ -233,7 +257,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-num">3</div><div class="stat-lbl">Categorías</div></div>
+  <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Categorías</div></div>
   <div class="stat"><div class="stat-num">+4</div><div class="stat-lbl">Partidos garantizados</div></div>
   <div class="stat"><div class="stat-num">$20K</div><div class="stat-lbl">Inscripción</div></div>
   <div class="stat"><div class="stat-num">🏆</div><div class="stat-lbl">Premios Especiales Máster</div></div>
@@ -245,39 +269,67 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
     <div class="sec-head">
       <span class="eyebrow">Para cada nivel</span>
       <h2>Categorías de Competencia</h2>
-      <p>Cada niño juega con la cancha, pelota y reglas adecuadas a su edad y desarrollo, según la normativa internacional ITF Tennis 10s.</p>
+      <p>Cada jugador compite con la cancha, pelota y reglas adecuadas a su edad y desarrollo, según la normativa ITF.</p>
     </div>
     <div class="cats">
+
+      <!-- ROJA -->
       <div class="cat-card cat-red">
         <div class="cat-badge cat-badge-red">R</div>
         <h3>Cancha Roja</h3>
+        <div style="display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap">
+          <span class="cat-sub cat-sub-red">Sub 6 años</span>
+          <span class="cat-sub cat-sub-red">Sub 8 años</span>
+        </div>
         <div class="cat-rows">
-          <div class="cat-row"><span class="cat-row-icon">👶</span><div><strong>Edad:</strong> <span>5 a 8 años (nacidos 2018–2021)</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">👶</span><div><strong>Sub 6:</strong> <span>nacidos 2020–2021</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🧒</span><div><strong>Sub 8:</strong> <span>nacidos 2018–2019</span></div></div>
           <div class="cat-row"><span class="cat-row-icon">🎾</span><div><strong>Pelota:</strong> <span>Roja de fieltro o esponja · rebote 75%</span></div></div>
-          <div class="cat-row"><span class="cat-row-icon">📐</span><div><strong>Cancha:</strong> <span>11 m de largo × 5 m de ancho</span></div></div>
-          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>2 tie-breaks a 7 pts · saque desde abajo</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📐</span><div><strong>Cancha:</strong> <span>11 m × 5 m</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>Set a 11 puntos · saque desde abajo</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📅</span><div><strong>Día:</strong> <span>Sábado 6 de junio</span></div></div>
         </div>
       </div>
+
+      <!-- NARANJA -->
       <div class="cat-card cat-orange">
         <div class="cat-badge cat-badge-orange">N</div>
         <h3>Cancha Naranja</h3>
         <div class="cat-rows">
           <div class="cat-row"><span class="cat-row-icon">🧒</span><div><strong>Edad:</strong> <span>9 y 10 años (nacidos 2016–2017)</span></div></div>
           <div class="cat-row"><span class="cat-row-icon">🎾</span><div><strong>Pelota:</strong> <span>Naranja · rebote 50%</span></div></div>
-          <div class="cat-row"><span class="cat-row-icon">📐</span><div><strong>Cancha:</strong> <span>18 m de largo × 6,5 m de ancho</span></div></div>
-          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>Games sin ventajas · mejor de 5 juegos</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📐</span><div><strong>Cancha:</strong> <span>18 m × 6,5 m</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>Set a 11 puntos</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📅</span><div><strong>Día:</strong> <span>Viernes 5 de junio</span></div></div>
         </div>
       </div>
+
+      <!-- VERDE -->
       <div class="cat-card cat-green">
         <div class="cat-badge cat-badge-green">V</div>
         <h3>Cancha Verde</h3>
         <div class="cat-rows">
-          <div class="cat-row"><span class="cat-row-icon">🧒</span><div><strong>Edad:</strong> <span>9 y 10 años nivel avanzado</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🧒</span><div><strong>Edad:</strong> <span>9 y 10 años · nivel avanzado</span></div></div>
           <div class="cat-row"><span class="cat-row-icon">🎾</span><div><strong>Pelota:</strong> <span>Verde · rebote 25%</span></div></div>
           <div class="cat-row"><span class="cat-row-icon">📐</span><div><strong>Cancha:</strong> <span>Cancha oficial ITF</span></div></div>
-          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>Games sin ventajas · mejor de 5 juegos</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>Set a 11 puntos</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📅</span><div><strong>Día:</strong> <span>Viernes 5 de junio</span></div></div>
         </div>
       </div>
+
+      <!-- SUB12 -->
+      <div class="cat-card cat-purple">
+        <div class="cat-badge cat-badge-purple">12</div>
+        <h3>Tenis 12 · Sub 12</h3>
+        <div class="cat-rows">
+          <div class="cat-row"><span class="cat-row-icon">👦</span><div><strong>Edad:</strong> <span>11 y 12 años (nacidos 2014–2015)</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🎾</span><div><strong>Pelota:</strong> <span>Pelota normal de tenis</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📐</span><div><strong>Cancha:</strong> <span>Cancha completa oficial</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">🏓</span><div><strong>Juego:</strong> <span>Set a 4 games · sin ventajas (punto de oro)</span></div></div>
+          <div class="cat-row"><span class="cat-row-icon">📅</span><div><strong>Días:</strong> <span>Fase de grupos: viernes 5 · Semifinales y final: sábado 6</span></div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -292,10 +344,15 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
     </div>
     <div class="cal-grid">
       <div class="cal-item next">
-        <div class="cal-date"><div class="cnum">29</div><div class="cmon">MAY · 26</div></div>
+        <div class="cal-date"><div class="cnum">5</div><div class="cmon">JUN · 26</div></div>
         <div class="cal-body">
           <h4>1ª Etapa · NorteTenis 2026</h4>
-          <p>29, 30 y 31 de mayo · Auto Club de Antofagasta<br>Cierre de inscripciones: <strong>jueves 29 de mayo a las 18:00 hrs</strong></p>
+          <p>
+            <strong>Viernes 5 de junio:</strong> Cancha Naranja, Cancha Verde y Sub 12 (fase de grupos)<br>
+            <strong>Sábado 6 de junio:</strong> Cancha Roja (Sub 6 y Sub 8) + Semifinales y Final Sub 12<br>
+            Auto Club de Antofagasta · Cierre de inscripciones: <strong>miércoles 3 de junio a las 18:00 hrs</strong><br>
+            Publicación cuadros de juego: jueves 4 de junio
+          </p>
         </div>
         <div class="cal-status"><span class="badge badge-next">¡Inscríbete!</span></div>
       </div>
@@ -315,7 +372,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
         <div class="cal-status"><span class="badge badge-tbd">Por definir</span></div>
       </div>
     </div>
-    <div class="cal-tbd">📅 &nbsp;Más etapas se anunciarán durante la temporada. Síguenos para no perderte ninguna fecha.</div>
+    <div class="cal-tbd">📅 Más etapas se anunciarán durante la temporada. Síguenos para no perderte ninguna fecha.</div>
   </div>
 </section>
 
@@ -325,15 +382,33 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
     <div class="sec-head">
       <span class="eyebrow">¿Cómo funciona?</span>
       <h2>Formato del Torneo</h2>
-      <p>Un circuito pensado para que cada niño y niña juegue muchos partidos y disfrute la competencia.</p>
+      <p>Un circuito pensado para que cada jugador juegue muchos partidos y disfrute la competencia.</p>
     </div>
     <div class="format-grid">
       <div class="format-card"><div class="format-icon">🏆</div><h4>Round Robin garantizado</h4><p>Fase de grupos donde todos juegan contra todos. Mínimo 4 partidos asegurados por jugador.</p></div>
-      <div class="format-card"><div class="format-icon">⚡</div><h4>Fase eliminatoria</h4><p>Los mejores clasificados avanzan a cuartos o semifinales. Todo se juega en el mismo día.</p></div>
-      <div class="format-card"><div class="format-icon">👨‍⚖️</div><h4>Árbitros formadores</h4><p>Cada partido tiene árbitro que guía, enseña protocolo y promueve el juego limpio y el fair play.</p></div>
-      <div class="format-card"><div class="format-icon">📊</div><h4>Ranking regional</h4><p>Puntos acumulados en cada etapa. Se suman los 8 mejores resultados del año para clasificar al Máster.</p></div>
+      <div class="format-card"><div class="format-icon">⚡</div><h4>Fase eliminatoria</h4><p>Los mejores clasificados avanzan a cuartos o semifinales. Todo en el mismo día.</p></div>
+      <div class="format-card"><div class="format-icon">👨‍⚖️</div><h4>Árbitros formadores</h4><p>Cada partido tiene árbitro que guía, enseña protocolo y promueve el fair play.</p></div>
+      <div class="format-card"><div class="format-icon">📊</div><h4>Ranking regional interno</h4><p>Ranking interno de la región. Puntos acumulados en cada etapa y los 8 mejores resultados del año clasifican al Máster.</p></div>
       <div class="format-card"><div class="format-icon">⬆️</div><h4>Ascenso de categoría</h4><p>El jugador que logre podio en 6 etapas asciende automáticamente a la categoría siguiente.</p></div>
       <div class="format-card"><div class="format-icon">🏅</div><h4>Medalla para todos</h4><p>Todos los participantes reciben diploma o medalla al terminar la fase de grupos.</p></div>
+    </div>
+
+    <!-- STAFF -->
+    <div class="staff-box">
+      <div class="staff-card">
+        <div class="staff-icon">👨‍⚖️</div>
+        <div>
+          <div class="staff-role">Árbitro General</div>
+          <div class="staff-name">Jorge Olivares</div>
+        </div>
+      </div>
+      <div class="staff-card">
+        <div class="staff-icon">🎾</div>
+        <div>
+          <div class="staff-role">Directora del Torneo</div>
+          <div class="staff-name">Jacinta Concha</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -351,8 +426,9 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
         <h4>📋 Inscripción y acceso</h4>
         <ul>
           <li>Inscripción obligatoria a través del formulario online.</li>
-          <li>Se confirma con pago previo vía transferencia o depósito bancario.</li>
-          <li>Cierre de inscripciones: jueves antes del torneo a las 18:00 hrs.</li>
+          <li>Se confirma con pago previo vía transferencia bancaria.</li>
+          <li>Cierre de inscripciones: miércoles 3 de junio a las 18:00 hrs.</li>
+          <li>Publicación de cuadros de juego: jueves 4 de junio.</li>
           <li>Solo se aceptan inscritos confirmados con pago acreditado.</li>
           <li>Valor de inscripción: $20.000 para todas las categorías.</li>
         </ul>
@@ -364,6 +440,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
           <li>Cancha Roja: pelota roja de fieltro o esponja (75% presión).</li>
           <li>Cancha Naranja: pelota naranja (50% presión).</li>
           <li>Cancha Verde: pelota verde (25% presión).</li>
+          <li>Sub 12 / Tenis 12: pelota normal de tenis.</li>
           <li>Los jugadores deben traer su propia raqueta.</li>
         </ul>
       </div>
@@ -371,7 +448,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
         <h4>📅 Desarrollo del torneo</h4>
         <ul>
           <li>Calentamiento previo: 3 minutos de raqueteo entre jugadores.</li>
-          <li>Cada etapa comienza y termina el mismo día (salvo más de 120 inscritos).</li>
+          <li>Cada etapa comienza y termina el mismo día.</li>
           <li>Programación y horarios publicados en el sitio web oficial.</li>
           <li>Un supervisor asigna rivales y registra resultados en cada partido.</li>
           <li>Los clasificados avanzan a cuartos o semifinales según cantidad de inscritos.</li>
@@ -381,10 +458,10 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
         <h4>👪 Para padres y acompañantes</h4>
         <ul>
           <li>No se permite el ingreso de padres ni entrenadores al sector de canchas.</li>
-          <li>El sistema de advertencias también aplica a acompañantes.</li>
+          <li class="warn">Está prohibido dar instrucciones tácticas o de cualquier índole a los jugadores durante los partidos, ya sean entrenadores o padres.</li>
+          <li>El sistema de advertencias también aplica a acompañantes y entrenadores.</li>
           <li>El árbitro tiene autoridad formativa y disciplinaria en cancha.</li>
           <li>Se fomenta el respeto, el juego limpio y las buenas actitudes.</li>
-          <li>Los ascensos se congelan en el primer torneo de septiembre.</li>
         </ul>
       </div>
     </div>
@@ -408,8 +485,39 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
   </div>
 </section>
 
+<!-- TRANSFERENCIA -->
+<section class="section section-w" id="transferencia">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Pago de inscripción</span>
+      <h2>Datos de Transferencia</h2>
+      <p>Transfiere $20.000 por jugador/a y envía el comprobante al momento de inscribirte.</p>
+    </div>
+    <div class="transfer-wrap">
+      <div>
+        <table class="transfer-table" style="border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);border:1.5px solid var(--border)">
+          <tr><td>Nombre</td><td><strong>Rodrigo López Abarca</strong></td></tr>
+          <tr><td>RUT</td><td>13.975.983-4</td></tr>
+          <tr><td>Banco</td><td>Banco Itaú</td></tr>
+          <tr><td>Tipo de cuenta</td><td>Cuenta Corriente</td></tr>
+          <tr><td>Número de cuenta</td><td><strong>229 994 512</strong></td></tr>
+          <tr><td>Correo</td><td>rodlopezabarca@hotmail.com</td></tr>
+          <tr><td>Monto</td><td><strong style="color:var(--orange)">$20.000 por jugador/a</strong></td></tr>
+        </table>
+        <div class="transfer-note">
+          📌 Importante: una vez realizada la transferencia, envía el comprobante a <strong>jacintaconcha@gmail.com</strong> o al WhatsApp <strong>+56 9 5678 6929</strong> indicando el nombre del jugador/a y la categoría.
+        </div>
+      </div>
+      <div class="qr-box">
+        <img id="qrimg" src="" alt="QR Transferencia" style="width:160px;height:160px;border-radius:8px;display:block">
+        <p>📱 Escanea para<br>ver datos de pago</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PREMIOS -->
-<section class="section section-w" id="premios">
+<section class="section" id="premios">
   <div class="container">
     <div class="sec-head">
       <span class="eyebrow">Reconocimientos</span>
@@ -445,12 +553,12 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
 <section class="cta-section">
   <div style="position:relative;z-index:2">
     <h2>¡Inscribe a tu hijo/a ahora!</h2>
-    <p>Primera fecha: 29, 30 y 31 de mayo · Auto Club de Antofagasta</p>
+    <p>Primera fecha: viernes 5 y sábado 6 de junio · Auto Club de Antofagasta</p>
     <div class="cta-price">Inscripción <strong>$20.000</strong> · Todas las categorías</div><br>
     <a href="https://forms.gle/dazjSDBWztzc6arV6" target="_blank" class="btn btn-white">🎾 Ir al formulario de inscripción</a>
-    <p class="cta-deadline">Cierre de inscripciones: jueves 29 de mayo a las 18:00 hrs</p>
+    <p class="cta-deadline">Cierre de inscripciones: miércoles 3 de junio a las 18:00 hrs</p>
     <div style="margin-top:28px;color:rgba(255,255,255,.7);font-size:14px;line-height:2.2">
-      📧 jacintaconcha@gmail.com &nbsp;·&nbsp; 📱 +56956786929
+      📧 jacintaconcha@gmail.com &nbsp;·&nbsp; 📱 +56 9 5678 6929
     </div>
   </div>
 </section>
@@ -460,17 +568,23 @@ footer{background:var(--navy);color:rgba(255,255,255,.55);padding:40px;display:f
   <div>
     <div class="footer-brand">Norte<em>Tenis</em></div>
     <div style="margin-top:6px">Circuito Regional de Tenis 10s · Antofagasta 2026</div>
+    <div style="margin-top:4px">Árbitro General: Jorge Olivares · Directora: Jacinta Concha</div>
   </div>
   <div style="text-align:right">
     <div style="display:flex;gap:8px;justify-content:flex-end;margin-bottom:8px">
       <div style="width:10px;height:10px;border-radius:50%;background:var(--red)"></div>
       <div style="width:10px;height:10px;border-radius:50%;background:var(--orange)"></div>
       <div style="width:10px;height:10px;border-radius:50%;background:var(--green)"></div>
+      <div style="width:10px;height:10px;border-radius:50%;background:var(--purple)"></div>
     </div>
     <div>Auto Club de Antofagasta</div>
     <div style="margin-top:4px"><a href="https://forms.gle/dazjSDBWztzc6arV6" target="_blank" style="color:var(--orange);font-weight:700">Inscripciones →</a></div>
   </div>
 </footer>
 
+<script>
+const datos = encodeURIComponent("Banco Itaú | Rodrigo López Abarca | RUT: 13.975.983-4 | Cta Cte: 229994512 | $20.000 por jugador | Comprobante: jacintaconcha@gmail.com");
+document.getElementById("qrimg").src = "https://api.qrserver.com/v1/create-qr-code/?size=160x160&color=1A2E4A&bgcolor=ffffff&data=" + datos;
+</script>
 </body>
 </html>
